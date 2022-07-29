@@ -1,7 +1,7 @@
 import Debug "mo:base/Debug";
 import Principal "mo:base/Principal";
 
-actor class NFT(name: Text, owner: Principal, content: [Nat8]) {
+actor class NFT(name: Text, owner: Principal, content: [Nat8]) = this {
 
     //Nat8 is a 8bit natural number that we will use to store image data inside an array.
 
@@ -23,7 +23,9 @@ actor class NFT(name: Text, owner: Principal, content: [Nat8]) {
         return imageBytes;
     };
 
-
+    public query func getCanisterId() : async Principal {
+        return Principal.fromActor(this);
+    }
 
 
 };
