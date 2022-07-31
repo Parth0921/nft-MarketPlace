@@ -10,7 +10,7 @@ function Gallery(props) {
     if (props.ids != undefined) {
       setItems(
         props.ids.map(NFTId => (
-          <Item key={NFTId} id={NFTId.toText()} />
+          <Item key={NFTId} id={NFTId.toText()} role={props.role} />
         ))
       )
     }
