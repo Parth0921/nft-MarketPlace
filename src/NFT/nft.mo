@@ -5,9 +5,9 @@ actor class NFT(name: Text, owner: Principal, content: [Nat8]) = this {
 
     //Nat8 is a 8bit natural number that we will use to store image data inside an array.
 
-    let itemName = name;
-    let nftOwner = owner;
-    let imageBytes = content;
+   private let itemName = name;
+   private var nftOwner = owner;
+   private let imageBytes = content;
 
     //every time we create a new nft it will create a new canister which will have it's own unique id. Hence we will in this way create a nft
 
@@ -25,7 +25,16 @@ actor class NFT(name: Text, owner: Principal, content: [Nat8]) = this {
 
     public query func getCanisterId() : async Principal {
         return Principal.fromActor(this);
-    }
+    };
 
+
+    public shared(msg) func transferOwnership(newOwner: Principal) : async Text {
+        if (msg.caller == nftOwner){
+            nftOwner := newOwner;
+            return "Success";
+        } else {
+            return "Error: Not initiated by NFT Owner";
+        }
+    };
 
 };
