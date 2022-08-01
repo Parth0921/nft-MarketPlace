@@ -1,7 +1,6 @@
 service : {
-  getAsset: () -> (vec nat8) query;
-  getCanisterId: () -> (principal) query;
-  getName: () -> (text) query;
-  getOwner: () -> (principal) query;
-  transferOwnership: (principal) -> (text);
+  balanceOf: (principal) -> (nat) query;
+  getSymbol: () -> (text) query;
+  payOut: () -> (text);
+  transfer: (principal, nat) -> (text);
 }
